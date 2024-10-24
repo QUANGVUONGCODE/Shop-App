@@ -1,5 +1,7 @@
 package com.wedsite.zuong2004.service;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.wedsite.zuong2004.dto.request.UserRequest;
@@ -38,6 +40,8 @@ public class UserService {
                 () -> new AppException(ErrorCode.ROLE_ID_REQUIRED));
 
         User user = userMapper.toUser(request);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(role);
         user.setActive(true);
         return userMapper.mapToUserResponse(userRepository.save(user));
