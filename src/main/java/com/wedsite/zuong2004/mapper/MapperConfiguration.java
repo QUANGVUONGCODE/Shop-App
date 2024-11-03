@@ -30,4 +30,5 @@ public class MapperConfiguration {
     public RoleMapper roleMapper() {
         return Mappers.getMapper(RoleMapper.class);
     }
+
 }

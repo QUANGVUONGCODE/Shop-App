@@ -7,14 +7,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
+@Data
 @Getter
 @Setter
 @Builder
@@ -37,6 +39,9 @@ public class UserRequest {
     @Size(min = 8, max = 32, message = "PASSWORD_INVALID")
     String password;
 
+    @JsonProperty("role_id")
+    Long roleId;
+
     @JsonProperty("is_active")
     boolean active;
 
@@ -49,7 +54,4 @@ public class UserRequest {
     @JsonProperty("google_account_id")
     int googleAccountId;
 
-    @NotNull(message = "ROLE_ID_REQUIRED")
-    @JsonProperty("role_id")
-    Long roleId;
 }

@@ -1,10 +1,9 @@
 package com.wedsite.zuong2004.enity;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,19 +13,17 @@ import lombok.experimental.FieldDefaults;
 import lombok.AccessLevel;
 
 @Entity
-@Table(name = "roles")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Role {
+public class InvalidateToken {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    String id;
 
-    String name;
+    Date expityTime;
 
 }

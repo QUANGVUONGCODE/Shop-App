@@ -1,5 +1,8 @@
 package com.wedsite.zuong2004.controller;
 
+import java.util.List;
+
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +21,10 @@ import com.wedsite.zuong2004.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import lombok.AccessLevel;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/user")
@@ -27,10 +32,29 @@ import lombok.AccessLevel;
 public class UserController {
     UserService userService;
 
-    @PostMapping
+    @PostMapping("/register")
     public ApiResponse<UserResponse> createUser(@RequestBody @Valid UserRequest request) {
         return ApiResponse.<UserResponse>builder()
                 .result(userService.createUser(request))
+                .build();
+    }
+
+    @GetMapping("/myInfo")
+    public ApiResponse<UserResponse> getMyInfo() {
+        return ApiResponse.<UserResponse>builder()
+                .result(userService.getMyinfo())
+                .build();
+    }
+
+    @GetMapping
+    public ApiResponse<List<UserResponse>> getUsers() {
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.info("In method get User");
+        log.info("PhoneNumber: " + authentication.getName());
+        authentication.getAuthorities().forEach(a -> log.info("ROLE: " + a.getAuthority()));
+
+        return ApiResponse.<List<UserResponse>>builder()
+                .result(userService.getAllUsers())
                 .build();
     }
 

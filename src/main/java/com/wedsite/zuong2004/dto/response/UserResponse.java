@@ -3,17 +3,18 @@ package com.wedsite.zuong2004.dto.response;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import java.time.LocalDateTime;
 
+@Data
 @Getter
 @Setter
 @Builder
@@ -41,11 +42,11 @@ public class UserResponse {
     @JsonProperty(value = "google_account_id")
     int googleAccountId;
 
-    @JsonProperty(value = "role_id")
-    Long roleId;
-
     @JsonProperty(value = "is_active")
     boolean active;
+
+    @JsonProperty(value = "role_id")
+    Long roleId;
 
     @JsonProperty(value = "created_at")
     LocalDateTime createdAt;

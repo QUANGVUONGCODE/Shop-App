@@ -21,4 +21,6 @@ spring:
 api:
   prefix: api/v1
 jwt:
-  expiration: 2592000 # 30 days
+  signerkey: 9ZLImtEGvQvEedlEkbRTOFa53q8RVLwA0vWJiFhIHJ5JKLrk4qwXl29j5etcZ8GY
+  valid-duration: 3600 #in second
+  refreshable-duration: 36000 # in second

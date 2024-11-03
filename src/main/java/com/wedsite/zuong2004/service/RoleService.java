@@ -12,9 +12,9 @@ import com.wedsite.zuong2004.exception.ErrorCode;
 import com.wedsite.zuong2004.mapper.RoleMapper;
 import com.wedsite.zuong2004.repository.RoleRepository;
 
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.AccessLevel;
 
 @Service
 @RequiredArgsConstructor
